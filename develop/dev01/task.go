@@ -19,8 +19,13 @@ import (
 Программа должна проходить проверки go vet и golint.
 */
 
-func main() {
+func getTime() (time.Time, error) {
 	receivedTime, err := ntp.Time("0.ru.pool.ntp.org")
+	return receivedTime, err
+}
+
+func main() {
+	receivedTime, err := getTime()
 	if err != nil {
 		_, _ = io.WriteString(os.Stderr, "Unable to get time from NTP server: "+err.Error())
 		os.Exit(1)
