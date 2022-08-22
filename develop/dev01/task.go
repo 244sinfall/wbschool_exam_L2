@@ -1,5 +1,12 @@
 package main
 
+import (
+	"github.com/beevik/ntp"
+	"io"
+	"os"
+	"time"
+)
+
 /*
 === Базовая задача ===
 
@@ -13,5 +20,11 @@ package main
 */
 
 func main() {
-
+	receivedTime, err := ntp.Time("0.ru.pool.ntp.org")
+	if err != nil {
+		_, _ = io.WriteString(os.Stderr, "Unable to get time from NTP server: "+err.Error())
+		os.Exit(1)
+	}
+	_, _ = io.WriteString(os.Stdout, receivedTime.Format(time.RFC850)+" UTC")
+	os.Exit(0)
 }
