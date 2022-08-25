@@ -47,8 +47,7 @@ func getAmount(builder *strings.Builder) int {
 
 func unpack(s string) (string, error) {
 	// Превращаем строку в руны для итерации
-	runes := []rune(s)
-	if len(runes) == 0 {
+	if len(s) == 0 {
 		return "", errors.New("empty string given")
 	}
 	// Создаем билдер для вывода
@@ -60,7 +59,7 @@ func unpack(s string) (string, error) {
 	// Для escape последовательностей. Даем одному символу избежать проверки на символ
 	var escape bool
 	// Итерируемся по рунам на входе
-	for idx, r := range runes {
+	for idx, r := range s {
 		if r == '\\' && !escape {
 			escape = true
 			continue
@@ -77,7 +76,7 @@ func unpack(s string) (string, error) {
 			}
 			currentRune = r
 		}
-		if idx == len(runes)-1 {
+		if idx == len(s)-1 {
 			if currentRune != 0 {
 				writeSequence(currentRune, getAmount(&currentLength), &output)
 				currentLength.Reset()
