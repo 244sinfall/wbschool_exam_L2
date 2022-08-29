@@ -1,4 +1,4 @@
-package main
+package ang
 
 import "testing"
 
@@ -19,7 +19,7 @@ func TestAnagrams(t *testing.T) {
 		"монетка", "катеном", // Два элемента
 		"СЫР", // 1 элемент
 		"листок", "слиток", "столик"}
-	ang := showAnagrams(testArr)
+	ang := ShowAnagrams(testArr)
 	for k := range ang {
 		byteSumFor(k)
 		for _, v := range ang[k] {

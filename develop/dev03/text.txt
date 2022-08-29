@@ -1,6 +1,0 @@
-MONTH STRING DESCRIPTION
-DEC 1231 Helloworld
-MAR qwer Niceworld
-MAR qwer Okworld
-JAN qwtr Aaafsfsd
-APR trtwe Zindex
