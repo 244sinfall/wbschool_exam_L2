@@ -14,7 +14,12 @@ import (
 func SeparateCommands(input string) []string {
 	commands := strings.Split(input, "|")
 	for i, cmd := range commands {
-		commands[i] = strings.TrimSpace(cmd)
+		rawCmd := strings.TrimSpace(cmd)
+		if len(rawCmd) == 0 {
+			commands = append(commands[:i], commands[i+1:]...)
+		} else {
+			commands[i] = rawCmd
+		}
 	}
 	return commands
 }
